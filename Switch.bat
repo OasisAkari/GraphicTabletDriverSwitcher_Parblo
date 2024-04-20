@@ -4,11 +4,11 @@
 ::Set path to current folder
 set "currentPath=%~dp0"
 ::Set driver folder names
-set "driver1Name=Huion"
+set "driver1Name=Parblo"
 set "driver2Name=Wacom"
 
-::Set Huion App location
-set "huionApp=C:\Program Files\HuionTablet"
+::Set Parblo App location
+set "parbloApp=C:\Program Files (x86)\Parblo"
 
 ::Set driver path
 set "driver1=%currentPath%%driver1Name%"
@@ -24,10 +24,8 @@ set "lastDriver=%lastDriver:~0,-1%"
 set "driverLocation=C:\Windows\System32"
 set "driverLocation2=C:\Windows\SysWOW64"
 
-::Kill Huion apps
-taskkill /f /im "HuionTablet.exe"
-taskkill /f /im "HuionServer.exe"
-taskkill /f /im "HuionTabletCore.exe"
+::Kill Parblo apps
+taskkill /f /im "parbloDriver.exe"
 
 ::Kill Wacom apps
 taskkill /f /im "WacomCenterUI.exe"
@@ -66,8 +64,8 @@ if NOT %ERRORLEVEL% == 0 (
 echo %driver1% > "%lastDriverFileName%"
 ::Show what driver is using after change
 echo "Driver changed to %driver1Name% driver"
-::Huion need this app to work
-start "" /D "%huionApp%" "HuionTablet.exe"
+::Parblo need this app to work
+start "" /D "%parbloApp%" "parbloDriver.exe"
 ::Skip to final
 goto final
 
@@ -85,7 +83,7 @@ if NOT %ERRORLEVEL% == 0 (
 ::Change last driver to driver 2
 echo %driver2% > "%lastDriverFileName%"
 ::Show what driver is using after change
-echo "Driver changed to %driver1Name% driver"
+echo "Driver changed to %driver2Name% driver"
 ::Wacom need this service to work
 net start WTabletServicePro
 ::Skip to final
